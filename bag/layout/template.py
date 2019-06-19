@@ -1208,7 +1208,8 @@ class TemplateBase(DesignMaster, metaclass=abc.ABCMeta):
             the new template instance.
         """
         kwargs['grid'] = self.grid
-        return self.template_db.new_template(params=params, temp_cls=temp_cls, debug=debug,
+        template_params = copy.deepcopy(params)
+        return self.template_db.new_template(params=template_params, temp_cls=temp_cls, debug=debug,
                                              **kwargs)
 
     def move_all_by(self, dx=0.0, dy=0.0, unit_mode=False):
